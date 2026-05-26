@@ -17,49 +17,7 @@ A simple Streamlit app template for you to modify!
    ```
    $ streamlit run streamlit_app.py
    ```
-import streamlit as st
-from openai import OpenAI
 
-# 🔑 Coloca aqui a tua API Key
-client = OpenAI(api_key="SUA_API_KEY")
+This repository's Streamlit application lives in [streamlit_app.py](streamlit_app.py).
 
-st.set_page_config(page_title="Avaliador de Negócios de Saúde")
-
-st.title("🧠 Avaliador de Negócios de Saúde")
-st.write("Insere uma ideia de negócio e recebe uma análise completa.")
-
-# 📥 Input do utilizador
-descricao = st.text_area("Descreve o negócio de saúde:", height=150)
-
-if st.button("Avaliar negócio"):
-    if descricao:
-        with st.spinner("A analisar..."):
-
-            prompt = f"""
-            És um especialista em gestão de negócios na área da saúde em Portugal.
-
-            Analisa o seguinte negócio:
-
-            1. Pontos positivos
-            2. Pontos negativos
-            3. Riscos
-            4. Viabilidade
-            5. Sugestões
-            6. Monetização
-            7. Nota final de 1 a 10
-
-            Negócio: {descricao}
-            """
-
-            resposta = client.chat.completions.create(
-                model="gpt-4o-mini",
-                messages=[{"role": "user", "content": prompt}]
-            )
-
-            resultado = resposta.choices[0].message.content
-
-        st.subheader("📊 Resultado da análise:")
-        st.write(resultado)
-
-    else:
-        st.warning("Por favor, escreve uma descrição do negócio.")
+If you need help running or modifying the app, open an issue or ask for guidance.
